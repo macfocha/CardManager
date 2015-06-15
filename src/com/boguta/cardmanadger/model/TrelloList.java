@@ -2,17 +2,11 @@ package com.boguta.cardmanadger.model;
 
 import java.util.List;
 
-import com.boguta.cardmanadger.DataManager.ListType;
-
 public class TrelloList {
     private List<Card> cards;
 
     private String id;
     private String name;
-    private boolean closed;
-    private int pos;
-    private boolean subscribed;
-    private ListType type;
 
     public List<Card> getCards() {
         return cards;
@@ -30,16 +24,8 @@ public class TrelloList {
         return name;
     }
 
-    public ListType getType() {
-        return type;
-    }
-
-    public void setType(ListType type) {
-        this.type = type;
-    }
-
     public void addCard(Card card) {
-        if (cards != null) {
+        if (cards != null && card != null) {
             cards.add(card);
         }
     }
@@ -48,6 +34,28 @@ public class TrelloList {
         if (cards != null) {
             cards.remove(card);
         }
+    }
+
+    public Card getCardByName(String name) {
+        if (cards != null && name != null) {
+            for (Card card : cards) {
+                if (name.equals(card.getName())) {
+                    return card;
+                }
+            }
+        }
+        return null;
+    }
+
+    public Card getCardById(String id) {
+        if (cards != null && id != null) {
+            for (Card card : cards) {
+                if (id.equals(card.getId())) {
+                    return card;
+                }
+            }
+        }
+        return null;
     }
 
 }
